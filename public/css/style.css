@@ -1,0 +1,62 @@
+body{ background-color: #e5e5e5; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; position: relative; }
+html, body{ margin:0; padding: 0;}
+*{ box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; }
+.hiden{ display: none; }
+
+a{ color: #34aaef; }
+a:hover{ color: #3e3e3e; }
+
+.padding-sm{ padding: 15px; }
+.padding-xs{ padding: 10px; }
+
+.menu{ }
+.menu li{ position: relative; display: block; }
+.menu li a{ display: block; }
+.menu.inline li{ display: inline-block; }
+
+.page-admin>header .submenu {
+    position: absolute;
+    right: 0; 
+    top: 31px;
+    z-index: 1;
+    background-color: #fff;
+    display: none;
+}
+.toogle-submenu.open ~ .submenu{
+    display: block;
+}
+.page-admin>header .submenu li a{ width: 100px; border-bottom: 1px solid rgba(72,0,0,.1); }
+
+.full-width{ width: 100%; }
+.clearfix:after, .clearfix:before{ display:  table; clear: both; content: "";  }
+
+.tool-logged{ }
+.tool-logged a{ padding: 0px 10px; line-height: 30px; }
+
+.page-admin>header{
+    background-color: #fff;
+    font-size: .75em;
+}
+
+.menu-primary{ position: absolute; left: 0; top: 30px; z-index: 100; background-color: #fff; bottom: 0; 
+    font-size: .75em; }
+.menu-primary li{ width: 200px; overflow: hidden; }
+.menu-primary li a{ display: block; padding: 0 7px; line-height: 30px; border-top: 1px solid rgba(72,0,0,.1); 
+    transition: all .2s ease-in-out;
+}
+.menu-primary li a:hover{ padding-left: 20px; }
+.menu-primary .submenu{ padding-left: 20px; }
+.menu-primary .submenu li{ height: 0; overflow: hidden; transition: all .3s ease-in-out; }
+.menu-primary .active .submenu li{ height: 31px; }
+.menu-primary .submenu li a{ border-left: 1px solid rgba(72,0,0,.1); border-top: none;  }
+
+.page-content{ 
+    padding-left: 200px;
+}
+
+.btnpointer{ cursor: pointer; color: #34aaef; }
+.txtdelete{ color: #e74c3c}
+.txtedit{ color: #16a085}
+
+.border-right-white{ border-right: 1px solid rgba(252,252,252,1)}
+.border-white{ border: 1px solid rgba(252,252,252,1)}
