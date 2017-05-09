@@ -1,18 +1,20 @@
 'use strict';
 import React, {Component} from 'react';
-
+import {Link} from 'react-router-dom';
+import UserContent from './UserContent';
+import Pagination from './Pagination';
 export default class User extends Component {
     constructor(props){
         super(props);
         this.state = {
             io: this.props.io,
             users: [
-                {id: 1, account: "Admin", name: "Nguyen thien Quang", status: true, register: new Date().toDateString() }
-            ]
+                {id: 1, account: "Admin", name: "Nguyen thien Quang", status: true, register: '03/02/2016', thumbnail: '/image/user/admin.pns', dateofbirth: '25/09/1994', loggedtime: '05:31:69 9/3/2017' }
+            ],
+            showinfo: ""
         }
 
         this._Delete = this._Delete.bind(this);
-        this._Edit = this._Edit.bind(this);
         this._View = this._View.bind(this);
     }
     render(){
@@ -45,17 +47,23 @@ export default class User extends Component {
                                             <td>{node.name}</td>
                                             <td>{asus}</td>
                                             <td>{status}</td>
-                                            <td><a href="#" className="txtdelete" onClick={ this._Delete(node.id) } >Delete</a></td>
-                                            <td><a href="#" className="txtedit" onClick={ this._Edit(node.id) } >Edit</a></td>
+                                            <td><a href="#" onClick={ this._Delete(node.id) } >Delete</a></td>
+                                            <td><Link className="txtedit" to={`/admin/user/edit/${node.id}`}>Edit</Link></td>
                                             <td>{node.register}</td>
                                         </tr>
                                     );
                                 }.bind(this))
                             }
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colSpan="8" className="text-right"><Pagination url="/admin/users"  total="20" page="2" show="10" /></td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     <div className="col-xs-12 col-sm-6 col-md-4">
+                        {this.state.showinfo}
                     </div>
                 </div>
             </div>
@@ -63,11 +71,9 @@ export default class User extends Component {
     }
     componentDidMount() {
         //this._getUser();
+        this.setState({showinfo: <UserContent user={this.state.users[0]} />});
     }
     _Delete(id){
-
-    }
-    _Edit(id){
 
     }
     _View(id){

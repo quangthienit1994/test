@@ -11,12 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "*",
     "express": "*",
+    "material-ui": "^0.18.0",
     "react": "*",
     "react-dom": "*",
+    "react-dropzone": "^3.13.1",
     "react-router": "*",
-    "socket.io": "*",
-    "ejs": "*"
+    "socket.io": "*"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
