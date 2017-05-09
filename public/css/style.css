@@ -71,3 +71,30 @@ a:hover{ color: #3e3e3e; }
 .user-content>h3{ color: #2c3e50; margin-bottom: 5px; padding-bottom: 7px; border-bottom: 1px solid rgba(72,0,0,.1); }
 
 .btn-long{ padding: 0 30px; line-height: 25px; }
+
+.relative{ position: relative; }
+.area-drop{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 1;}
+.area-drop>div{ position: relative; left: 0; top: 0; width: 100% !important; height: 100% !important; padding: 15px; color: #fff;  }
+.area-drop:hover{ background-color: rgba(0,0,0,.4); }
+
+.area-changepassword{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: rgba(0,0,0, .1);
+}
+.area-changepassword>div{
+    width: 320px;
+    margin: 13% auto;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.edit-user-page label{ line-height: 30px; }
+.edit-user-page .form-control{
+    display: inline-block !important;
+    width: auto !important;
+}

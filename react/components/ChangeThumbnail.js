@@ -12,7 +12,6 @@ export default class ChangeThumbnail extends Component{
         return (
             <div className="relative">
                 <img className="img-responsive" src={this.state.url} alt={this.props.alt} />
-                <br />
                 <div className="area-drop">
                     <Dropzone onDrop={(files) => this.onDrop(files)}>
                         <div>Try dropping some files here, or click to select files to upload.</div>
@@ -22,6 +21,6 @@ export default class ChangeThumbnail extends Component{
         );
     }
     onDrop(acceptedFiles, rejectedFiles) {
-       console.log('Accepted files: ', acceptedFiles[0].name);
-   }
+       this.setState({url: acceptedFiles[0].preview});
+    }
 }

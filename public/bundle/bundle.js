@@ -36541,7 +36541,8 @@ var EditUser = function (_Component) {
 
         _this.state = {
             user: { id: 1, account: "Admin", name: "Nguyen thien Quang", status: true, register: '03/02/2016', thumbnail: '/image/user/admin.pns', dateofbirth: '25/09/1994', loggedtime: '05:31:69 9/3/2017' },
-            password: false
+            password: false,
+            bool: false
         };
         return _this;
     }
@@ -36551,8 +36552,11 @@ var EditUser = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            var user = this.state.user;
+            var _state = this.state,
+                user = _state.user,
+                bool = _state.bool;
 
+            var changePass = this.__changePassword();
             if (user != null) {
                 return _react2.default.createElement(
                     'div',
@@ -36619,7 +36623,7 @@ var EditUser = function (_Component) {
                                             _react2.default.createElement(
                                                 'td',
                                                 null,
-                                                _react2.default.createElement('input', { type: 'text', value: user.account, disabled: 'true' })
+                                                _react2.default.createElement('input', { className: 'form-control input-sm', type: 'text', value: user.account, disabled: 'true' })
                                             )
                                         ),
                                         _react2.default.createElement(
@@ -36637,13 +36641,45 @@ var EditUser = function (_Component) {
                                             _react2.default.createElement(
                                                 'td',
                                                 null,
-                                                _react2.default.createElement('input', { type: 'text', value: user.name, onChange: function onChange(e) {
+                                                _react2.default.createElement('input', { className: 'form-control input-sm', type: 'text', value: user.name, onChange: function onChange(e) {
                                                         _this2.state.user.name = e.target.value;_this2.setState(_this2.state);
                                                     } })
                                             )
+                                        ),
+                                        _react2.default.createElement(
+                                            'tr',
+                                            null,
+                                            _react2.default.createElement(
+                                                'td',
+                                                null,
+                                                _react2.default.createElement(
+                                                    'label',
+                                                    null,
+                                                    'Date of Bird'
+                                                )
+                                            ),
+                                            _react2.default.createElement(
+                                                'td',
+                                                null,
+                                                _react2.default.createElement('input', { className: 'form-control input-sm', type: 'text', value: user.dateofbirth })
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'tr',
+                                            null,
+                                            _react2.default.createElement(
+                                                'td',
+                                                { colSpan: '2' },
+                                                _react2.default.createElement(
+                                                    'button',
+                                                    { onClick: function onClick() {
+                                                            return _this2.setState({ bool: !bool });
+                                                        }, className: 'btn btn-deafult btn-long' },
+                                                    'Chage Password'
+                                                )
+                                            )
                                         )
-                                    ),
-                                    _react2.default.createElement(_ChangePassword2.default, { userID: this.state.user.id })
+                                    )
                                 )
                             ),
                             _react2.default.createElement(
@@ -36652,13 +36688,31 @@ var EditUser = function (_Component) {
                                 _react2.default.createElement(_ChangeThumbnail2.default, { url: '/image/user/admin.png', userid: this.state.user.id, alt: 'Nguy\u1EC5n thi\xEAn quang' })
                             )
                         )
-                    )
+                    ),
+                    changePass
                 );
             } else {
                 return _react2.default.createElement(
                     'p',
                     null,
                     'Nothing data'
+                );
+            }
+        }
+    }, {
+        key: '__changePassword',
+        value: function __changePassword() {
+            var _this3 = this;
+
+            var _bool = this.state.bool;
+
+            if (_bool == true) {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'animated fadeIn' },
+                    _react2.default.createElement(_ChangePassword2.default, { bool: function bool() {
+                            return _this3.setState({ bool: !_bool });
+                        }, userID: this.state.user.id })
                 );
             }
         }
@@ -36699,6 +36753,10 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jquery = __webpack_require__(65);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -36718,8 +36776,7 @@ var ChangePassword = function (_Component) {
         _this.state = {
             old: "",
             newpass: "",
-            newpass2: "",
-            bool: false
+            newpass2: ""
         };
         return _this;
     }
@@ -36730,109 +36787,133 @@ var ChangePassword = function (_Component) {
             var _this2 = this;
 
             var userID = this.props.userID;
-            var bool = this.state.bool;
 
             if (userID == null) return res;
-            var chane = void 0;
-            if (bool == true) {
-                chane = _react2.default.createElement(
-                    'tbody',
+            return _react2.default.createElement(
+                'div',
+                { className: 'area-changepassword' },
+                _react2.default.createElement(
+                    'div',
                     null,
                     _react2.default.createElement(
-                        'tr',
-                        null,
+                        'table',
+                        { className: 'table table-hover small' },
                         _react2.default.createElement(
-                            'td',
-                            null,
-                            'Old Password'
-                        ),
-                        _react2.default.createElement(
-                            'td',
-                            null,
-                            _react2.default.createElement('input', { type: 'text', value: this.state.old, onChange: function onChange(e) {
-                                    return _this2.setState({ old: e.target.value });
-                                } })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'tr',
-                        null,
-                        _react2.default.createElement(
-                            'td',
-                            null,
-                            'New Password'
-                        ),
-                        _react2.default.createElement(
-                            'td',
-                            null,
-                            _react2.default.createElement('input', { type: 'text', value: this.state.newpass, onChange: function onChange(e) {
-                                    return _this2.setState({ newpass: e.target.value });
-                                } })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'tr',
-                        null,
-                        _react2.default.createElement(
-                            'td',
-                            null,
-                            'Confirm Password'
-                        ),
-                        _react2.default.createElement(
-                            'td',
-                            null,
-                            _react2.default.createElement('input', { type: 'text', value: this.state.newpass2, onChange: function onChange(e) {
-                                    return _this2.setState({ newpass2: e.target.value });
-                                } })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'tr',
-                        null,
-                        _react2.default.createElement(
-                            'td',
+                            'thead',
                             null,
                             _react2.default.createElement(
-                                'button',
-                                { onClick: function onClick() {
-                                        return _this2.setState({ bool: !bool });
-                                    }, className: 'btn btn-deafult btn-long' },
-                                'Cancel'
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    { colSpan: '2' },
+                                    _react2.default.createElement(
+                                        'h4',
+                                        null,
+                                        'Please change your password'
+                                    )
+                                )
                             )
                         ),
                         _react2.default.createElement(
-                            'td',
+                            'tbody',
                             null,
                             _react2.default.createElement(
-                                'button',
-                                { className: 'btn btn-info btn-long' },
-                                'Save'
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    'Old Password'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    _react2.default.createElement('input', { type: 'password', value: this.state.old, onChange: function onChange(e) {
+                                            return _this2.setState({ old: e.target.value });
+                                        } })
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    'New Password'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    _react2.default.createElement('input', { type: 'password', value: this.state.newpass, onChange: function onChange(e) {
+                                            return _this2.setState({ newpass: e.target.value });
+                                        } })
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    'Confirm Password'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    _react2.default.createElement('input', { type: 'password', value: this.state.newpass2, onChange: function onChange(e) {
+                                            return _this2.setState({ newpass2: e.target.value });
+                                        } })
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'tfoot',
+                            null,
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    _react2.default.createElement(
+                                        'button',
+                                        { onClick: function onClick() {
+                                                return _this2.props.bool();
+                                            }, className: 'btn btn-deafult btn-long' },
+                                        'Cancel'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    null,
+                                    _react2.default.createElement(
+                                        'button',
+                                        { className: 'btn btn-info btn-long' },
+                                        'Save'
+                                    )
+                                )
                             )
                         )
                     )
-                );
-            } else {
-                chane = _react2.default.createElement(
-                    'tbody',
-                    null,
-                    _react2.default.createElement(
-                        'tr',
-                        null,
-                        _react2.default.createElement(
-                            'td',
-                            { colSpan: '2' },
-                            _react2.default.createElement(
-                                'button',
-                                { onClick: function onClick() {
-                                        return _this2.setState({ bool: !bool });
-                                    }, className: 'btn btn-deafult btn-long' },
-                                'Chage Password'
-                            )
-                        )
-                    )
-                );
-            }
-            return chane;
+                )
+            );
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.viewPass();
+        }
+    }, {
+        key: 'viewPass',
+        value: function viewPass() {
+            (0, _jquery2.default)(document).on('hover', 'input[type="password"]', function () {
+                if ((0, _jquery2.default)(this).attr("type") == "password") {
+                    (0, _jquery2.default)(this).attr("type", "text");
+                } else {
+                    (0, _jquery2.default)(this).attr("type", "password");
+                }
+            });
         }
     }]);
 
@@ -36893,7 +36974,6 @@ var ChangeThumbnail = function (_Component) {
                 'div',
                 { className: 'relative' },
                 _react2.default.createElement('img', { className: 'img-responsive', src: this.state.url, alt: this.props.alt }),
-                _react2.default.createElement('br', null),
                 _react2.default.createElement(
                     'div',
                     { className: 'area-drop' },
@@ -36914,7 +36994,7 @@ var ChangeThumbnail = function (_Component) {
     }, {
         key: 'onDrop',
         value: function onDrop(acceptedFiles, rejectedFiles) {
-            console.log('Accepted files: ', acceptedFiles[0].name);
+            this.setState({ url: acceptedFiles[0].preview });
         }
     }]);
 
